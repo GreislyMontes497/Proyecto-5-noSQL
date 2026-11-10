@@ -73,7 +73,7 @@ router.put('/:id', async (req, res) => {
     const { id } = req.params;
     try {
         // Buscamos por ID y actualizamos con el cuerpo que nos pasen en Postman
-        const updatedMovie = await Movie.findByIdAndUpdate(id, req.body, { new: true });
+        const updatedMovie = await Movie.findByIdAndUpdate(id, req.body, { new: true, runValidators: true });
         if (!updatedMovie) return res.status(404).json({ message: 'No se encontró la película para actualizar' });
         return res.status(200).json(updatedMovie);
     } catch (err) {
